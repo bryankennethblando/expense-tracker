@@ -1,4 +1,4 @@
-# Expense Tracker Installment 1: Landing Page
+# Expense Tracker Installment 3: tracker does math
 # Author: Bryan Kenneth Blando
 
 print('=' * 40) 
@@ -41,7 +41,7 @@ left_in_budget = budget - grand_total
 
 print(f'Total spent: \t${total}')
 print(f'Average: \t${average}')
-print(f'Tax ({tax_rate}%): \t${tax}')
+print(f'Tax ({tax_rate * 100}%): \t${tax}')
 print(f'Grand total: \t${grand_total}')
 print(f'Over budget? \t{over_budget}')
 print(f'Left in budget: ${left_in_budget}')
