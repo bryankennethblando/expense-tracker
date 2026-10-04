@@ -15,10 +15,13 @@ print(' [4] Exit \t\t\t(coming soon)\n')
 name = input("What's your name? ")
 print(f"Welcome, {name}! Let's log two expenses.")
 
+# input section
 item1 = input("\nFirst expense? ")
 amount1 = float(input("Amount? "))
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
+tax_rate = int(input("Tax Rate %? ")) / 100
+budget = int(input('Your budget? '))
 
 # --------------------------------------->
 print(f'\n{'-' * 40}')
@@ -30,10 +33,20 @@ print(f' - {item2}: \t${amount2}')
 total = amount1 + amount2
 average = total / 2
 
+# tax and grand_total computation
+tax = (amount1 * tax_rate) + (amount2 * tax_rate)
+grand_total = total + tax
+over_budget = grand_total > budget
+left_in_budget = budget - grand_total
+
 print(f'Total spent: \t${total}')
 print(f'Average: \t${average}')
+print(f'Tax ({tax_rate}%): \t${tax}')
+print(f'Grand total: \t${grand_total}')
+print(f'Over budget? \t{over_budget}')
+print(f'Left in budget: ${left_in_budget}')
 
 print('-' * 40)
-print('Made by: Bryan Kenneth Blando | Installment 2')
+print('Made by: Bryan Kenneth Blando | Installment 3')
 print('=' * 40)
 
