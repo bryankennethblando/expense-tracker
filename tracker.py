@@ -1,4 +1,4 @@
-# Expense Tracker Installment 4: tracker makes descisions
+# Expense Tracker Installment 5: menu comes alive
 # Author: Bryan Kenneth Blando
 
 print('=' * 40) 
@@ -6,70 +6,63 @@ print('EXPENSE TRACKER'.center(40))
 print('Know where your money goes.'.center(40))
 print('=' * 40)
 
-print('\nMAIN MENU')
-print(' [1] Add an expense \t\t(coming soon)')
-print(' [2] View all expenses \t\t(coming soon)')
-print(' [3] Show total spent \t\t(coming soon)')
-print(' [4] Exit \t\t\t(coming soon)\n')
-
 name = input("What's your name? ")
-print(f"Welcome, {name}! Let's log two expenses.")
-
-# -----------  input section
-subtotal = 0.0
-
-# first expense section
-item1 = input("\nFirst expense? ")
-amount1 = float(input("Amount? "))
-subtotal += amount1
-
-# Condition
-if amount1 > 200: print('Huge expense - are you sure? ')
-elif amount1 > 100: print('Big expense.')
-elif amount1 > 50: print('Moderate expense.')
-else: print('Small expense.')
-
-
-# Second expense section
-item2 = input("Second expense? ")
-amount2 = float(input("Amount? "))
-subtotal += amount2
-
-# Condition
-if amount2 > 200: print('Huge expense - are you sure?') 
-elif amount1 > 100 and amount2 > 100: print('Two big expenses in a row - slow down.')
-elif amount2 > 100: print('Big expense.')
-elif amount2 > 50: print('Moderate expense.')
-else: print('Small expense.')
-
-tax_rate = int(input("Tax Rate %? ")) / 100
+tax_percent = int(input("Tax Rate %? ")) / 100
 budget = int(input('Your budget? '))
+print(f'Welcome, {name}!')
 
-# computation
-average = subtotal / 2
-# tax and total computation
-tax = (amount1 * tax_rate) + (amount2 * tax_rate)
-total = subtotal + tax
-# Condition Message
-over_budget = ''
+choice = 0
+count = 0
+subtotal = 0.0
+while choice != 4:
+    print('\nMAIN MENU')
+    print(' [1] Add an expense')
+    print(' [2] View all expenses \t\t(coming soon)')
+    print(' [3] Show total spent')
+    print(' [4] Exit\n')
 
-if budget < total : over_budget = f'Over budget by  ${total - budget}!'
-elif total >= (0.90 * budget): over_budget = f'Careful: only  ${budget - total} left.'
-else: over_budget = f'Within budget:  ${budget - total} left.'
+    choice = int(input('Choose 1-4: '))
 
-# --------------------------------------->
-print(f'\n{'-' * 40}')
-print('SUMMARY')
-print(f' - {item1 + ':':<10} \t${amount1}')
-print(f' - {item2 + ':':<10} \t${amount2}')
+    if choice == 1:
+        # -----------  input section
+        amount = float(input("Amount? "))
+        subtotal += amount
 
-print(f'Subtotal: \t${subtotal}')
-print(f'Average: \t${average}')
-print(f'Tax ({tax_rate * 100}%): \t${tax}')
-print(f'Grand total: \t${total}')
-print(over_budget)
+        # Condition
+        if amount > 200: print('  Huge expense - are you sure?')
+        elif amount > 100: print('  Big expense.')
+        elif amount > 50: print('  Moderate expense.')
+        else: print('  Small expense.')
 
-print('-' * 40)
-print('Made by: Bryan Kenneth Blando | Installment 4')
-print('=' * 40)
+        count += 1
+
+    elif choice == 2: 
+        print('  Coming Soon: tracker can\'t remember each item yet')
+
+    elif choice == 3: 
+        # tax and total computation
+        tax_percent *= subtotal
+        total = subtotal + tax_percent
+        # Condition Message
+        over_budget = ''
+
+        if budget < subtotal : over_budget = f'  Over budget by ${total - budget}!'
+        elif subtotal >= (0.90 * budget): over_budget = f'  Careful: only ${budget - total} left.'
+        else: over_budget = f'  Within budget: ${budget - total} left.'
+
+        # --------------------------------------->
+        print(f'  Expenses: \t {count}')
+        print(f'  Subtotal: \t ${subtotal}')
+        print(f'  Tax ({tax_percent}%): \t ${tax_percent}')
+        print(f'  Grand total: \t ${total}')
+        print(over_budget)
+
+    elif choice > 4 or choice < 1:
+        print('  Please choose 1, 2, 3, or 4.')
+
+    else:
+        print(f'Goodbye, {name}!')
+        print('-' * 40)
+        print('Made by: Bryan Kenneth Blando | Installment 5')
+        print('=' * 40)
 
