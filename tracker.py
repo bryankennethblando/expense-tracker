@@ -16,57 +16,58 @@ name = input("What's your name? ")
 print(f"Welcome, {name}! Let's log two expenses.")
 
 # -----------  input section
+subtotal = 0.0
+
 # first expense section
 item1 = input("\nFirst expense? ")
 amount1 = float(input("Amount? "))
-first_expense_msg = ''
+subtotal += amount1
 
 # Condition
-if amount1 > 200: first_expense_msg = 'Huge expense - are you sure? ' 
-elif amount1 > 100: first_expense_msg = 'Big expense.'
-elif amount1 > 50: first_expense_msg = 'Moderate expense.'
-else: first_expense_msg = 'Small expense.'
-print(first_expense_msg)
+if amount1 > 200: print('Huge expense - are you sure? ')
+elif amount1 > 100: print('Big expense.')
+elif amount1 > 50: print('Moderate expense.')
+else: print('Small expense.')
+
 
 # Second expense section
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
-second_expense_msg = ''
+subtotal += amount2
 
 # Condition
-if amount2 > 200: second_expense_msg = 'Huge expense - are you sure? ' 
-elif amount1 > 100 and amount2 > 100: second_expense_msg = 'Two big expenses in a row - slow down.'
-elif amount2 > 100: second_expense_msg = 'Big expense.'
-elif amount2 > 50: second_expense_msg = 'Moderate expense.'
-else: second_expense_msg = 'Small expense.'
-print(second_expense_msg)
+if amount2 > 200: print('Huge expense - are you sure?') 
+elif amount1 > 100 and amount2 > 100: print('Two big expenses in a row - slow down.')
+elif amount2 > 100: print('Big expense.')
+elif amount2 > 50: print('Moderate expense.')
+else: print('Small expense.')
 
 tax_rate = int(input("Tax Rate %? ")) / 100
 budget = int(input('Your budget? '))
 
 # computation
-total = amount1 + amount2
-average = total / 2
-# tax and grand_total computation
+average = subtotal / 2
+# tax and total computation
 tax = (amount1 * tax_rate) + (amount2 * tax_rate)
-grand_total = total + tax
+total = subtotal + tax
 # Condition Message
-notification_msg = ''
+over_budget = ''
 
-if budget < grand_total: notification_msg = f'Over budget by  ${grand_total - budget}!'
-elif grand_total >= (0.90 * budget): notification_msg = f'Careful: only  ${budget - grand_total} left.'
-else: notification_msg = f'Within budget:  ${budget - grand_total} left.'
+if budget < total : over_budget = f'Over budget by  ${total - budget}!'
+elif total >= (0.90 * budget): over_budget = f'Careful: only  ${budget - total} left.'
+else: over_budget = f'Within budget:  ${budget - total} left.'
+
 # --------------------------------------->
 print(f'\n{'-' * 40}')
 print('SUMMARY')
 print(f' - {item1 + ':':<10} \t${amount1}')
 print(f' - {item2 + ':':<10} \t${amount2}')
 
-print(f'Subtotal: \t${total}')
+print(f'Subtotal: \t${subtotal}')
 print(f'Average: \t${average}')
 print(f'Tax ({tax_rate * 100}%): \t${tax}')
-print(f'Grand total: \t${grand_total}')
-print(notification_msg)
+print(f'Grand total: \t${total}')
+print(over_budget)
 
 print('-' * 40)
 print('Made by: Bryan Kenneth Blando | Installment 4')
